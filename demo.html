@@ -1,0 +1,44 @@
+<!doctype html>
+
+<html>
+<head>
+
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<link rel="stylesheet" type="text/css" href="./stx-chart.css" media="screen" />
+</head>
+
+<body>
+
+<div class="chartContainer" style="width:800px;height:460px;position:relative;"></div>
+
+<script type="module" crossorigin="use-credentials">
+const SAMPLE_5_MINS=[{"Date":"2015-04-16 16:00","Open":152.13,"High":152.19,"Low":152.08,"Close":152.11,"Volume":4505569},
+{"Date":"2015-04-17 09:30","Open":151.76,"High":151.83,"Low":151.65,"Close":151.79,"Volume":2799990},
+/*{"Date":"2015-04-17 09:35","Open":151.79,"High":151.8,"Low":151.6,"Close":151.75,"Volume":1817706},
+{"Date":"2015-04-17 09:40","Open":151.74,"High":151.96,"Low":151.74,"Close":151.84,"Volume":2127911},
+{"Date":"2015-04-17 09:45","Open":151.84,"High":152.03,"Low":151.79,"Close":151.95,"Volume":1640306},
+{"Date":"2015-04-17 09:50","Open":151.95,"High":152.09,"Low":151.84,"Close":152.07,"Volume":1420396}*/];
+
+
+// Reference the charting library.
+import { CIQ } from "./chartiq.js";
+
+// Instantiate a CIQ.ChartEngine object, the main object for creating charts.
+let stxx = new CIQ.ChartEngine({
+	container: document.querySelector(".chartContainer")
+});
+
+// Display the chart.
+stxx.loadChart("IBM", {
+	masterData: SAMPLE_5_MINS,
+	periodicity: {
+		period: 1,
+		interval: 5,
+		timeUnit: "minute"
+	}
+});
+</script>
+</body>
+</html>
